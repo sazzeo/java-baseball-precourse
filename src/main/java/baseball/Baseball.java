@@ -19,7 +19,7 @@ public class Baseball {
         List<Integer> baseBallNumberList = new ArrayList<>(this.size);
         int size = 0;
         while(size <this.size) {
-            int randomNumber = Randoms.pickNumberInRange(1, 9);
+            int randomNumber = Randoms.pickNumberInRange(1, 9); //여기가 맞을까?? , 상수는 변수로 빼기
             if(baseballNumberSet.add(randomNumber)) {
                 baseBallNumberList.add(randomNumber);
                 size++;
@@ -31,6 +31,4 @@ public class Baseball {
     public List<Integer> getBaseballNumber() {
         return new ArrayList<>(baseballNumber);
     }
-
-
 }
