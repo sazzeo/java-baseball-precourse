@@ -137,6 +137,7 @@ This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blo
 2. 사용자로부터 3자리 수를 받는다.
    - 숫자는 중복되지 않아야 한다.
    - 숫자외의 값을 받아서는 안된다.
+   - 숫자는 음수이면 안된다.
    - 잘못된 값이 insert 되면 IllegalArgumentException을 발생시킨다.
 3. 컴퓨터와 사용자 간의 숫자를 비교한다
    - 결과에 따라 스트라이크, 볼, 낫싱을 출력한다.
