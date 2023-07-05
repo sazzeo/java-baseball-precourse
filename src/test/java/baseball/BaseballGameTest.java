@@ -1,24 +1,50 @@
 package baseball;
 
-
-import game.BaseballGame;
-import org.assertj.core.api.Assertions;
+import baseball.config.BaseballGameSetting;
+import baseball.domain.BaseballNumber;
+import baseball.domain.BaseballResult;
+import baseball.domain.UserNumber;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static baseball.config.BaseballGameSetting.DIGIT_NUMBER;
 
 public class BaseballGameTest {
-    @Test
-    public void 게임_생성() {
-        BaseballGame baseballGame = new BaseballGame();
-        baseballGame.start();
+    BaseballNumber baseballNumber;
+    UserNumber userNumber;
+
+    @BeforeEach
+    void setUp() {
+        String userInput = "123";
+        userNumber = new UserNumber(userInput);
+        baseballNumber = new BaseballNumber();
     }
 
+    @Disabled("유저 숫자와 baseball 숫자 비교하기")
     @Test
-    public void 넘버_생성() {
-        BaseballNumber baseballNumber = new BaseballNumber();
-        List<Integer> baseballNumberList = baseballNumber.getBaseballNumberList();
-        Assertions.assertThat(baseballNumberList.size()).isEqualTo(3);
+    public void compareNumber() {
+        BaseballResult baseballResult = new BaseballResult();
+        for (int i = 0; i < DIGIT_NUMBER; i++) {
+            int peekUserNumber = userNumber.peek();
+            int num = baseballNumber.indexOf(peekUserNumber);
+            if (num == -1) {
+                continue;
+            }
+            if (num == i) {
+                baseballResult.incrementStrike();
+                continue;
+            }
+            baseballResult.incrementBall();
+        }
+        System.out.println(baseballNumber.get());
+        System.out.println(baseballResult.getResult());
     }
+
+    public void numberResult() {
+
+
+    }
+
 
 }

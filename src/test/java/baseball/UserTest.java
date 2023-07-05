@@ -1,11 +1,9 @@
 package baseball;
 
-import org.assertj.core.api.Assertions;
+import baseball.config.BaseballGameSetting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.BaseballGameSetting;
 import utils.NumberUtils;
-import utils.PatternUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -102,4 +100,5 @@ public class UserTest {
             return matcher.find();
         }
     }
+
 }
