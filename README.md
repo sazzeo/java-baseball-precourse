@@ -129,8 +129,9 @@
 
 This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blob/master/LICENSE) licensed.
 
+<br>
 
-## 구현 로직
+##  jeeyoung's 구현 로직
 1. 게임을 시작하면 컴퓨터는 3자리의 랜덤한 숫자를 만든다
    - 3자리는 1~9 까지의 수이다.
    - 숫자끼리는 중복되지 않아야 한다.
@@ -143,4 +144,5 @@ This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blo
    - 결과에 따라 스트라이크, 볼, 낫싱을 출력한다.
    - 3개의 스트라이크 시 게임이 종료된다.
 4. 재시작/종료를 선택한다.
-
+    - 1 입력시 게임이 재시작 된다
+    - 2 입력시 게임이 종료 된다
