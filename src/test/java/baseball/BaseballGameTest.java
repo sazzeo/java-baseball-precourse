@@ -1,6 +1,5 @@
 package baseball;
 
-import baseball.config.BaseballGameSetting;
 import baseball.domain.BaseballNumber;
 import baseball.domain.BaseballResult;
 import baseball.domain.UserNumber;
