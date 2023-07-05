@@ -1,6 +1,6 @@
-package user;
+package baseball.domain;
 
-import utils.BaseballGameSetting;
+import baseball.config.BaseballGameSetting;
 import utils.NumberUtils;
 import utils.PatternUtils;
 
@@ -52,7 +52,10 @@ public class UserNumber {
         return integerList;
     }
 
-    public List<Integer> getUserNumberList() {
-        return new ArrayList<>(this.userNumber);
+    public int peek() {
+        if (this.userNumber.isEmpty()) {
+            throw new RuntimeException("userNumber가 비었습니다.");
+        }
+        return userNumber.remove(0);
     }
 }

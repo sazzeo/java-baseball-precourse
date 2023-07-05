@@ -1,19 +1,19 @@
-package baseball;
+package baseball.domain;
 
-import utils.BaseballGameSetting;
+import baseball.config.BaseballGameSetting;
 import utils.NumberUtils;
 
 import java.util.*;
 
 public class BaseballNumber {
-    private final Set<Integer> baseballNumberSet;
+    private final List<Integer> baseballNumberList;
 
     public BaseballNumber() {
-        this.baseballNumberSet = getNewBaseballNumberSet();
+        this.baseballNumberList = this.getBaseballNumberList();
     }
 
-    public List<Integer> getBaseballNumberList() {
-        return new ArrayList<>(this.baseballNumberSet);
+    private List<Integer> getBaseballNumberList() {
+        return new ArrayList<>(this.getNewBaseballNumberSet());
     }
 
     private void addNonDuplicationRandomNumber(Set<Integer> baseballNumberSet) {
@@ -29,9 +29,18 @@ public class BaseballNumber {
     }
 
     private Set<Integer> getNewBaseballNumberSet() {
-        // 왜 hash set 쓰니까 순서가 정렬 돼서 들어갈까?
+        //HashSet 캐싱으로 LinkedHashSet 사용
         Set<Integer> baseballNumberSet = new LinkedHashSet<>();
         this.addBaseballNumber(baseballNumberSet);
         return baseballNumberSet;
     }
+
+    public int indexOf(int number) {
+        return this.baseballNumberList.indexOf(number);
+    }
+
+    public List<Integer> get() {
+        return new ArrayList<>(this.baseballNumberList);
+    }
+
 }
