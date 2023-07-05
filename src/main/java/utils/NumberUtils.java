@@ -2,8 +2,8 @@ package utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static utils.BaseballGameSetting.MAX_NUMBER;
-import static utils.BaseballGameSetting.MIN_NUMBER;
+import static baseball.config.BaseballGameSetting.MAX_NUMBER;
+import static baseball.config.BaseballGameSetting.MIN_NUMBER;
 
 public class NumberUtils {
     public static int getNumber() {
@@ -16,4 +16,5 @@ public class NumberUtils {
             throw new IllegalArgumentException("유효하지 않은 숫자입니다.");
         return number;
     }
+
 }
