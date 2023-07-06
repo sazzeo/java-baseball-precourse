@@ -3,6 +3,7 @@ package baseball;
 import baseball.config.BaseballGameSetting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import utils.NumberUtils;
 
 import java.util.ArrayList;
@@ -79,6 +80,9 @@ public class UserTest {
         }
     }
 
+
+    //FIXME ParameterizedTest => 매개변수 리스트로 받아서 테스트 할 수 있음.
+//    @ParameterizedTest()
     @Test
     void 숫자유효한지_테스트() {
         boolean number = PatternUtils.isNumber("34");

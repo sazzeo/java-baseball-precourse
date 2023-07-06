@@ -11,13 +11,14 @@ import java.util.Set;
 
 public class UserNumber {
 
-    private final List<Integer> userNumber;
+    private final List<Integer> userNumber;  //FIXMEnumbers로 바꾸기
 
+    //FIXME 필드명이 number인데 변수가 string => 생성자 1개 더 만들어서 바꾸기
     public UserNumber(final String inputNumber) {
         validatedSize(inputNumber);
         validatedNumber(inputNumber);
         validatedSDuplicate(inputNumber);
-        this.userNumber = convertStringToIntgerList(inputNumber);
+        this.userNumber = convertStringToIntgerList(inputNumber); //FIXME 너무 많은 일을 하고 있음
     }
 
     private void validatedNumber(final String inputNumber) {
@@ -43,6 +44,7 @@ public class UserNumber {
         }
     }
 
+    //FIXME 메소드가 너무 많은 역할을 하는 중
     private List<Integer> convertStringToIntgerList(final String number) {
         int numberSize = number.length();
         List<Integer> integerList = new ArrayList<>();
@@ -52,6 +54,8 @@ public class UserNumber {
         return integerList;
     }
 
+    //일급 컬렉션은 remove가 있으면 안됨
+    // immutable 객체로 내보내기 (list에서 지원함)
     public int peek() {
         if (this.userNumber.isEmpty()) {
             throw new RuntimeException("userNumber가 비었습니다.");

@@ -6,10 +6,13 @@ import static baseball.config.BaseballGameSetting.MAX_NUMBER;
 import static baseball.config.BaseballGameSetting.MIN_NUMBER;
 
 public class NumberUtils {
+    
+    //FIXME 이름 genNumber로 바꾸기
     public static int getNumber() {
         return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
     }
 
+    //FIXME
     public static int convertCharToOneDigitNumber(char c) {
         int number = c - '0';
         if(number < 0 || number > 10 )

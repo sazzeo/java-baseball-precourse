@@ -5,6 +5,7 @@ import baseball.domain.BaseballResult;
 import baseball.domain.UserNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static baseball.config.BaseballGameSetting.DIGIT_NUMBER;
@@ -20,7 +21,7 @@ public class BaseballGameTest {
         baseballNumber = new BaseballNumber();
     }
 
-    @Disabled("유저 숫자와 baseball 숫자 비교하기")
+    @DisplayName("유저 숫자와 baseball 숫자 비교하기")
     @Test
     public void compareNumber() {
         BaseballResult baseballResult = new BaseballResult();
@@ -44,6 +45,4 @@ public class BaseballGameTest {
 
 
     }
-
-
 }
