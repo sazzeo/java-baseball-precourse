@@ -15,4 +15,8 @@ public class Num {
             throw new IllegalArgumentException("숫자는 1~9 사이 입력만 가능합니다.");
         }
     }
+
+    public int getNum() {
+        return this.num;
+    }
 }
