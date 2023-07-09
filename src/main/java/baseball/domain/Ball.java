@@ -9,8 +9,12 @@ public class Ball {
         this.num = num;
     }
 
+    public Ball(final int num) {
+        this(new Num(num));
+    }
+
     public Num getNum() {
-        return num;
+        return this.num;
     }
 
     @Override
