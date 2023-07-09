@@ -4,24 +4,25 @@ import java.util.Objects;
 
 public class Ball {
     private Num num;
-    private Position position;
 
-    public Ball(final Num num, final Position position) {
+    public Ball(final Num num) {
         this.num = num;
-        this.position = position;
+    }
+
+    public Num getNum() {
+        return num;
     }
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Ball)) return false;
         final Ball ball = (Ball) o;
-        return Objects.equals(num, ball.num) && Objects.equals(position, ball.position);
+        return Objects.equals(num, ball.num);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(num, position);
+        return Objects.hash(num);
     }
-
 }
