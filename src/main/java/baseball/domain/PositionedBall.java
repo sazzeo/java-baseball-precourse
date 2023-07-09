@@ -27,4 +27,8 @@ public class PositionedBall extends Ball {
     public int hashCode() {
         return Objects.hash(super.hashCode(), ball, position);
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }

@@ -1,18 +1,14 @@
 package baseball.domain;
 
-import baseball.domain.Ball;
-import baseball.domain.Balls;
-import baseball.domain.Num;
-import baseball.domain.Position;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BallsTest {
 
 
@@ -24,32 +20,36 @@ public class BallsTest {
 
     @BeforeEach
     void setUp() {
-//        ball1 = new Ball(new Num(1) , new Position(1));
-//        ball2 = new Ball(new Num(2) , new Position(3));
-//        ball3 = new Ball(new Num(9) , new Position(2));
-//        ball4 = new Ball(new Num(5) , new Position(1));
-//        ball5 = new Ball(new Num(1) , new Position(2));
+        ball1 = new Ball(new Num(1));
+        ball2 = new Ball(new Num(2));
+        ball3 = new Ball(new Num(9));
+        ball4 = new Ball(new Num(5));
+        ball5 = new Ball(new Num(1));
     }
 
-    @Test
-    public void validateSizeTest() {
-        List<Ball> balls = new ArrayList<>();
-        balls.add(ball1);
-        balls.add(ball3);
+    private List<Ball> genBalls(Ball... balls) {
+        return Arrays.asList(balls);
+    }
 
+
+    @Test
+     void validateSizeTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Balls(balls);
+            new Balls(genBalls(ball1, ball2));
         });
     }
 
     @Test
-    public void validateDuplicateTest() {
-        List<Ball> balls = new ArrayList<>();
-        balls.add(ball1);
-        balls.add(ball2);
-        balls.add(ball5);
+    void validateDuplicateTest() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Balls(balls);
+            new Balls(genBalls(ball1, ball2, ball5));
         });
     }
+
+    @Test
+    void generatedPositionBallsTest() {
+        Balls balls = new Balls(genBalls(ball1, ball2, ball3));
+        Assertions.assertEquals(balls.getBalls().get(0).getPosition().getPosition() , 1);
+    }
+
 }
