@@ -14,7 +14,7 @@ public class Position {
 
     private void validate(final int position) {
         if (position <= 0 || position > BaseballSetting.DIGITS) {
-            throw new IllegalArgumentException("3자리 수 이하로만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(BaseballSetting.DIGITS + "자리 수 이하로만 입력할 수 있습니다.");
         }
     }
 

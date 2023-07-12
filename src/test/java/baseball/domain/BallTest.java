@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class BallTest {
 
+    
+    //FIXME 성공 테스트 , 실패 테스트 각각 만들기
     @DisplayName("position validate test")
     @ParameterizedTest
     @ValueSource(ints = {0, 5, -3, 15})

@@ -3,18 +3,14 @@ package baseball.domain;
 import java.util.Objects;
 
 public class Ball {
-    private Num num;
+    protected final Num num;
 
-    public Ball(final Num num) {
+    private Ball(final Num num) {
         this.num = num;
     }
 
-    public Ball(final int num) {
+    protected Ball(final int num) {
         this(new Num(num));
-    }
-
-    public Num getNum() {
-        return this.num;
     }
 
     @Override
