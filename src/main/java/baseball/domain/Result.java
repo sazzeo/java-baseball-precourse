@@ -1,29 +1,19 @@
 package baseball.domain;
 
 public class Result {
-    private int ball;
-    private int strike;
+    private final int ball;
+    private final int strike;
 
-    public Result() {
-        this.ball = 0;
-        this.strike = 0;
+    public Result(final int ball, final int strike) {
+        this.ball = ball;
+        this.strike = strike;
     }
 
-    public void compare(PositionedBall ball1, PositionedBall ball2) {
-        if(ball1.equals(ball2)) {
-            strike++;
-            return;
-        }
-        if(ball1.getNum().equals(ball2.getNum())) {
-            ball++;
-        }
-    }
-
-    public int getBall() {
-        return ball;
-    }
-
-    public int getStrike() {
-        return strike;
+    @Override
+    public String toString() {
+        return "Result{" +
+                "ball=" + ball +
+                ", strike=" + strike +
+                '}';
     }
 }

@@ -1,39 +1,32 @@
 package baseball.domain;
 
-import baseball.config.BaseballState;
-
 import java.util.Objects;
 
-public class PositionedBall extends Ball {
+public class PositionedBall {
+
+    private final Ball ball;
 
     private final Position position;
 
-    public PositionedBall(int ball, int position) {
-        super(ball);
+    public PositionedBall(Ball ball, int position) {
+        this.ball = ball;
         this.position = new Position(position);
+    }
+
+    public static PositionedBall from(Ball ball, int position) {
+        return new PositionedBall(ball, position);
     }
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof PositionedBall)) return false;
-        if (!super.equals(o)) return false;
         final PositionedBall that = (PositionedBall) o;
-        return Objects.equals(position, that.position);
+        return Objects.equals(ball, that.ball) && Objects.equals(position, that.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), position);
-    }
-
-    public BaseballState compareTo(final PositionedBall positionedBall) {
-        if (this.equals(positionedBall)) {
-            return BaseballState.STRIKE;
-        }
-        if (this.num.equals(positionedBall.num)) {
-            return BaseballState.BALL;
-        }
-        return BaseballState.NOTING;
+        return Objects.hash(ball, position);
     }
 }

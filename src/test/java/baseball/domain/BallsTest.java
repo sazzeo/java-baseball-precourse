@@ -24,4 +24,5 @@ class BallsTest {
             new Balls(list);
         });
     }
+
 }

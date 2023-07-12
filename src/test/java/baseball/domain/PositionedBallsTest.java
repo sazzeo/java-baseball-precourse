@@ -1,35 +1,28 @@
 package baseball.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
-import java.util.List;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PositionedBallsTest {
 
 
-    private Ball ball1;
-    private Ball ball2;
-    private Ball ball3;
-    private Ball ball4;
-    private Ball ball5;
+   Balls balls1;
+   Balls balls2;
 
     @BeforeEach
     void setUp() {
-        ball1 = new Ball(1);
-        ball2 = new Ball(2);
-        ball3 = new Ball(9);
-        ball4 = new Ball(5);
-        ball5 = new Ball(1);
+        this.balls1 = new Balls(Arrays.asList(1, 2, 3));
+        this.balls2 = new Balls(Arrays.asList(5, 4, 1));
     }
 
-    private List<Ball> genBalls(Ball... balls) {
-        return Arrays.asList(balls);
+    @Test
+    void compareTest() {
+        PositionedBalls positionedBalls1 = new PositionedBalls(balls1);
+        PositionedBalls positionedBalls2 = new PositionedBalls(balls2);
+        Result result = positionedBalls1.compareTo(positionedBalls2);
     }
-
-
 }

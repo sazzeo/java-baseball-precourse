@@ -12,14 +12,10 @@ public class Num {
         this.num = num;
     }
 
-    public void validateRange(final int num){
+    private void validateRange(final int num){
         if(num < BaseballSetting.MIN_NUMBER || num > BaseballSetting.MAX_NUMBER) {
             throw new IllegalArgumentException("숫자는 1~9 사이 입력만 가능합니다.");
         }
-    }
-
-    public int getNum() {
-        return this.num;
     }
 
     @Override
@@ -27,11 +23,11 @@ public class Num {
         if (this == o) return true;
         if (!(o instanceof Num)) return false;
         final Num num1 = (Num) o;
-        return getNum() == num1.getNum();
+        return num == num1.num;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNum());
+        return Objects.hash(num);
     }
 }

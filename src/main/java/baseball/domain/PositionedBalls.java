@@ -1,33 +1,42 @@
 package baseball.domain;
 
-import baseball.config.BaseballSetting;
-import baseball.config.BaseballState;
+import baseball.utils.CollectionUtils;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class PositionedBalls {
-    public final Set<PositionedBall> balls;
+    private final Balls balls;
+    private final Set<PositionedBall> positionedBalls;
 
-    public PositionedBalls(List<Integer> numbers) {
-        this.balls = generatedPositionBalls(numbers);
+    public PositionedBalls(Balls balls) {
+        this.balls = balls;
+        this.positionedBalls = generatedPositionBalls(balls);
     }
 
-    private void validateDuplicate(final Set<PositionedBall> balls) {
-        if (balls.size() != 3) {
-            throw new IllegalArgumentException("중복되지 않은 수를 입력해주세요");
-        }
-    }
-
-    private Set<PositionedBall> generatedPositionBalls(List<Integer> numbers) {
+    private Set<PositionedBall> generatedPositionBalls(Balls balls) {
+        Iterator<Ball> ballIter = balls.createIterator();
         Set<PositionedBall> positionedBalls = new HashSet<>();
-        int ballSize = balls.size();
-        for (int i = 0; i < ballSize; i++) {
-            positionedBalls.add(new PositionedBall(numbers.get(i), i + 1));
+        int position = 1;
+        while (ballIter.hasNext()) {
+            positionedBalls.add(PositionedBall.from(ballIter.next(), position++));
         }
         return positionedBalls;
     }
 
-    private List<BaseballState> compareTo(PositionedBalls positionedBalls) {
-        return null;
+    public Result compareTo(PositionedBalls positionedBalls) {
+        int ball = countBallTo(positionedBalls);
+        int strike = countStrikeTo(positionedBalls);
+        return new Result(ball-strike ,strike);
+    }
+
+    private int countBallTo(PositionedBalls positionedBalls) {
+        return this.balls.countBallTo(positionedBalls.balls);
+    }
+
+    private int countStrikeTo(PositionedBalls positionedBalls) {
+        return CollectionUtils.retailAllCount(this.positionedBalls , positionedBalls.positionedBalls);
     }
 }

@@ -18,20 +18,16 @@ public class Position {
         }
     }
 
-    public int getPosition() {
-        return this.position;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Position)) return false;
         final Position position1 = (Position) o;
-        return getPosition() == position1.getPosition();
+        return position == position1.position;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPosition());
+        return Objects.hash(position);
     }
 }
