@@ -146,3 +146,19 @@ This project is [MIT](https://github.com/woowacourse/java-baseball-precourse/blo
 4. 재시작/종료를 선택한다.
     - 1 입력시 게임이 재시작 된다
     - 2 입력시 게임이 종료 된다
+
+
+## 종민M 테스트
+- baseball game 이니까 '공' 먼저 만듦
+- 유저의 '공' , 컴퓨터의 '공' => BallTest
+- 단독 공에서 3개의 공으로 바꿈 => BallsTest
+
+- 테스트 할때 모든 경우의 수 다 해봄
+- validation 용 클래스 따로 만듦 ex Position 객체
+- equals and hash 코드 재정의
+- 실패 테스트 만들기
+
+- 일급 컬렉션 (컬렉션용)
+- 원시값 포장 (원시 객체)
+- toString() 재정의하면 디버깅 할때 힘들어짐
+- 재귀 쓰지 말기 => 1024 부터 stack overflow 남
