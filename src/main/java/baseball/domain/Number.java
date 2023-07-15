@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Number {
 
-    private int number;
+    private final int number;
 
     public Number(final int number) {
         this.validateRange(number);
