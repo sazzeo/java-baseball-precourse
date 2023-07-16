@@ -1,10 +1,13 @@
 package baseball.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import baseball.utils.NumberUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
-public class NonDuplicatedNumberGenerator {
+public class NonDuplicatedNumberGenerator implements NumberGenerator {
 
     private int size;
 
@@ -12,17 +15,15 @@ public class NonDuplicatedNumberGenerator {
         this.size = size;
     }
 
+    @Override
     public List<Integer> generate() {
         Set<Integer> numbers = new LinkedHashSet<>();
         int size = 0;
         while (size < this.size) {
-            numbers.add(pickNumber());
+            numbers.add(NumberUtils.pickNumber());
             size = numbers.size();
         }
         return new ArrayList<>(numbers);
     }
 
-    private static int pickNumber() {
-        return Randoms.pickNumberInRange(BaseballSetting.MIN_NUM, BaseballSetting.MAX_NUM);
-    }
 }

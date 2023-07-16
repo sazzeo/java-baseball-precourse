@@ -1,6 +1,8 @@
 package baseball.domain;
 
 
+import baseball.config.BaseballSetting;
+
 import java.util.Objects;
 
 public class Number {
