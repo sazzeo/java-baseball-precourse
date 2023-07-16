@@ -1,4 +1,4 @@
-package baseball.domain;
+package baseball.config;
 
 public class BaseballSetting {
     public static final int DIGITS = 3;

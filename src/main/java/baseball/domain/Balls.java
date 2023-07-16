@@ -1,23 +1,28 @@
 package baseball.domain;
 
+import baseball.config.BaseballState;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import static baseball.domain.BaseballSetting.DIGITS;
+import static baseball.config.BaseballSetting.DIGITS;
 
 public class Balls {
     private final List<Ball> balls;
-
-    public Balls() {
-        this.balls = this.generateBalls();
-    }
-
 
     public Balls(final List<Integer> numbers) {
         this.validateSize(numbers);
         this.validateDuplicate(numbers);
         this.balls = this.generateBalls(numbers);
+    }
+
+    public BaseballState compareTo(Ball anotherBall) {
+//        if (
+//            this.balls.contains(anotherBall);
+//        )
+        //TODO : 꼐속 진행
+        return null;
     }
 
     private List<Ball> generateBalls(final List<Integer> numbers) {
@@ -29,10 +34,8 @@ public class Balls {
         return balls;
     }
 
-    private List<Ball> generateBalls() {
-        NonDuplicatedNumberGenerator nonDuplicatedNumberGenerator = new NonDuplicatedNumberGenerator(DIGITS);
-        List<Integer> numbers = nonDuplicatedNumberGenerator.generate();
-        return generateBalls(numbers);
+    private Ball get(int index) {
+        return balls.get(index);
     }
 
     private void validateSize(final List<Integer> numbers) {
