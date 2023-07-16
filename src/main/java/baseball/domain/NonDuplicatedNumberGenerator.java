@@ -2,25 +2,24 @@ package baseball.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
-public class NumberGenerator {
+public class NonDuplicatedNumberGenerator {
 
     private int size;
 
-    public NumberGenerator(final int size) {
+    public NonDuplicatedNumberGenerator(final int size) {
         this.size = size;
     }
 
-    public Set<Integer> generate() {
+    public List<Integer> generate() {
         Set<Integer> numbers = new LinkedHashSet<>();
         int size = 0;
         while (size < this.size) {
             numbers.add(pickNumber());
             size = numbers.size();
         }
-        return numbers;
+        return new ArrayList<>(numbers);
     }
 
     private static int pickNumber() {
