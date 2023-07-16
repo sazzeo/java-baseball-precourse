@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 class UserNumberInputTest {
 
+    //FIXME: 테스트는 의미없는 숫자 대신 경계값으로 테스트 해야함.
+    //FIXME: validate 있는 경우 무조건 실패 테스트 작성하기
 
     @ParameterizedTest
     @CsvSource({"23,23", "34,34"})

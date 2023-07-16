@@ -5,6 +5,7 @@ import baseball.config.BaseballState;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static baseball.config.BaseballSetting.DIGITS;
 
@@ -12,9 +13,13 @@ public class Balls {
     private final List<Ball> balls;
 
     public Balls(final List<Integer> numbers) {
+        this.validate(numbers);
+        this.balls = this.generateBalls(numbers);
+    }
+
+    private void validate(List<Integer> numbers) {
         this.validateSize(numbers);
         this.validateDuplicate(numbers);
-        this.balls = this.generateBalls(numbers);
     }
 
     public BaseballState compareTo(Ball anotherBall) {
@@ -33,10 +38,7 @@ public class Balls {
         }
         return balls;
     }
-
-    private Ball get(int index) {
-        return balls.get(index);
-    }
+    
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != DIGITS) {
@@ -45,7 +47,7 @@ public class Balls {
     }
 
     private void validateDuplicate(final List<Integer> numbers) {
-        HashSet<Integer> nonDuplicatedNumbers = new HashSet<>(numbers);
+        Set<Integer> nonDuplicatedNumbers = new HashSet<>(numbers);
         if (nonDuplicatedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("숫자는 중복될 수 없습니다.");
         }

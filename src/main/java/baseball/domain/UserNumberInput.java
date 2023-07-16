@@ -5,6 +5,8 @@ import java.util.List;
 
 public class UserNumberInput {
 
+    //FIXME: userInput이 불변인데 convert 값을 상태로 가지고 있는게 좋지 않나?
+    //FIXME: 유틸 클래스로 바꾸는게 더 나을 거 같음.
     private final String userInput;
 
     public UserNumberInput(final String userInput) {
