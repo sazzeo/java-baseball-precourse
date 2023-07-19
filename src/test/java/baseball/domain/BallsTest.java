@@ -1,6 +1,8 @@
 package baseball.domain;
 
+import baseball.config.BaseballState;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -8,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Arrays;
 
 import static baseball.config.ExceptionMessage.NON_DUPLICATED_SIZE;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 class BallsTest {
@@ -31,5 +34,32 @@ class BallsTest {
         Assertions.assertThatThrownBy(() -> {
             new Balls(Arrays.asList(v1, v2, v3));
         }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("스트라이크 테스트")
+    @Test
+    void strikeTest() {
+        Balls balls = new Balls(Arrays.asList(1, 2, 4));
+        assertThat(balls.matchBall(new Ball(1, 0))).isEqualTo(BaseballState.STRIKE);
+        assertThat(balls.matchBall(new Ball(2, 1))).isEqualTo(BaseballState.STRIKE);
+        assertThat(balls.matchBall(new Ball(4, 2))).isEqualTo(BaseballState.STRIKE);
+    }
+
+    @DisplayName("볼 테스트")
+    @Test
+    void ballTest() {
+        Balls balls = new Balls(Arrays.asList(2, 5, 4));
+        assertThat(balls.matchBall(new Ball(2, 1))).isEqualTo(BaseballState.BALL);
+        assertThat(balls.matchBall(new Ball(5, 0))).isEqualTo(BaseballState.BALL);
+        assertThat(balls.matchBall(new Ball(4, 1))).isEqualTo(BaseballState.BALL);
+    }
+
+    @DisplayName("낫싱 테스트")
+    @Test
+    void notingTest() {
+        Balls balls = new Balls(Arrays.asList(2, 5, 4));
+        assertThat(balls.matchBall(new Ball(3, 1))).isEqualTo(BaseballState.NOTING);
+        assertThat(balls.matchBall(new Ball(6, 0))).isEqualTo(BaseballState.NOTING);
+        assertThat(balls.matchBall(new Ball(8, 1))).isEqualTo(BaseballState.NOTING);
     }
 }

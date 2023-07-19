@@ -12,6 +12,14 @@ public class Ball {
         this.position = position;
     }
 
+    public boolean isPositionSame(Ball ball) {
+        return this.position == ball.getPosition();
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

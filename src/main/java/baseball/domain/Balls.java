@@ -24,12 +24,15 @@ public class Balls {
         this.validateDuplicate(numbers);
     }
 
-    public BaseballState compareTo(Ball anotherBall) {
-//        if (
-//            this.balls.contains(anotherBall);
-//        )
-        //TODO : 꼐속 진행
-        return null;
+    public BaseballState matchBall(Ball anotherBall) {
+        int index = this.balls.indexOf(anotherBall);
+        if (index < 0) {
+            return BaseballState.NOTING;
+        }
+        if (this.balls.get(index).isPositionSame(anotherBall)) {
+            return BaseballState.STRIKE;
+        }
+        return BaseballState.BALL;
     }
 
     private List<Ball> generateBalls(final List<Integer> numbers) {

@@ -3,6 +3,9 @@ package baseball.domain;
 import baseball.config.BaseballSetting;
 import baseball.config.BaseballState;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Computer {
 
     private final NumberGenerator numberGenerator;
@@ -21,12 +24,12 @@ public class Computer {
         this.balls = new Balls(this.numberGenerator.generate(BaseballSetting.DIGITS));
     }
 
-    public BaseballState compare(Ball ball) {
-        //TODO :계속진행
-        return null;
+    public List<BaseballState> matchBalls(List<Ball> anotherBalls) {
+        List<BaseballState> baseballStates = new ArrayList<>();
+        for (Ball anotherBall : anotherBalls) {
+            baseballStates.add(this.balls.matchBall(anotherBall));
+        }
+        return baseballStates;
     }
 
-    private Balls getBalls() {
-        return balls;
-    }
 }
