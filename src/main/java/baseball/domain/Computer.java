@@ -1,10 +1,11 @@
 package baseball.domain;
 
-import baseball.config.BaseballSetting;
 import baseball.config.BaseballState;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static baseball.config.BaseballSetting.DIGITS;
 
 public class Computer {
 
@@ -21,7 +22,7 @@ public class Computer {
     }
 
     public void resetBalls() {
-        this.balls = new Balls(this.numberGenerator.generate(BaseballSetting.DIGITS));
+        this.balls = new Balls(this.numberGenerator.generate(DIGITS));
     }
 
     public List<BaseballState> matchBalls(List<Ball> anotherBalls) {

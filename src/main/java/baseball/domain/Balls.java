@@ -2,10 +2,7 @@ package baseball.domain;
 
 import baseball.config.BaseballState;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static baseball.config.BaseballSetting.DIGITS;
 import static baseball.config.ExceptionMessage.NON_DUPLICATED_NUMBER;
