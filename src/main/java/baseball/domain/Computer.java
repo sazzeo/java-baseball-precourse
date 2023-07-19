@@ -9,7 +9,7 @@ public class Computer {
     private Balls balls;
 
     public Computer() {
-        this(new NonDuplicatedNumberGenerator(BaseballSetting.DIGITS));
+        this(new NonDuplicatedNumberGenerator());
     }
 
     public Computer(final NumberGenerator numberGenerator) {
@@ -18,11 +18,11 @@ public class Computer {
     }
 
     public void resetBalls() {
-        this.balls = new Balls(this.numberGenerator.generate());
+        this.balls = new Balls(this.numberGenerator.generate(BaseballSetting.DIGITS));
     }
 
     public BaseballState compare(Ball ball) {
-       //TODO :계속진행
+        //TODO :계속진행
         return null;
     }
 

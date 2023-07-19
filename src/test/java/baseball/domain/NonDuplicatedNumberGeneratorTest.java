@@ -9,7 +9,7 @@ class NonDuplicatedNumberGeneratorTest {
     @RepeatedTest(100)
     void sizeTest() {
         int size=3;
-        NonDuplicatedNumberGenerator nonDuplicatedNumberGenerator = new NonDuplicatedNumberGenerator(size);
-        Assertions.assertThat(nonDuplicatedNumberGenerator.generate().size()).isEqualTo(size);
+        NonDuplicatedNumberGenerator nonDuplicatedNumberGenerator = new NonDuplicatedNumberGenerator();
+        Assertions.assertThat(nonDuplicatedNumberGenerator.generate(size).size()).isEqualTo(size);
     }
 }
