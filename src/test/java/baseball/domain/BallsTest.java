@@ -6,7 +6,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
-import java.util.List;
+
+import static baseball.config.ExceptionMessage.NON_DUPLICATED_SIZE;
 
 
 class BallsTest {
@@ -15,11 +16,11 @@ class BallsTest {
     //FIXME: 실패 메세지를 같이 적음.   .describedAs()
     @Test
     void nonValidatedSizeTest() {
-        Assertions.assertThatThrownBy(
-                () -> {
+        Assertions.assertThatThrownBy(() -> {
                     new Balls(Arrays.asList(1, 2, 4, 5));
-                }
-        ).isInstanceOf(IllegalArgumentException.class);
+                }).isInstanceOf(IllegalArgumentException.class)
+                .describedAs("사이즈 미스 에러")
+                .hasMessage(NON_DUPLICATED_SIZE.getMessage());
         //FIXME: 더 구체적으로 테스트가 필요함.
     }
 
@@ -27,10 +28,8 @@ class BallsTest {
     @ParameterizedTest
     @CsvSource({"1,34,3", "45,32,1"})
     void nonValidatedNumberTest(int v1, int v2, int v3) {
-        Assertions.assertThatThrownBy(
-                () -> {
-                    new Balls(Arrays.asList(v1, v2, v3));
-                }
-        ).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> {
+            new Balls(Arrays.asList(v1, v2, v3));
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 }

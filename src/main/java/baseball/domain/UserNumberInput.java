@@ -3,6 +3,8 @@ package baseball.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static baseball.config.ExceptionMessage.ENTER_ONLY_NUMBER;
+
 public class UserNumberInput {
 
     //FIXME: userInput이 불변인데 convert 값을 상태로 가지고 있는게 좋지 않나?
@@ -18,7 +20,7 @@ public class UserNumberInput {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ENTER_ONLY_NUMBER.getMessage());
         }
     }
 

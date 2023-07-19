@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import static baseball.config.BaseballSetting.DIGITS;
+import static baseball.config.ExceptionMessage.NON_DUPLICATED_NUMBER;
+import static baseball.config.ExceptionMessage.NON_DUPLICATED_SIZE;
 
 public class Balls {
     private final List<Ball> balls;
@@ -38,18 +40,18 @@ public class Balls {
         }
         return balls;
     }
-    
+
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != DIGITS) {
-            throw new IllegalArgumentException("숫자는 " + DIGITS + "개여야 합니다.");
+            throw new IllegalArgumentException(NON_DUPLICATED_SIZE.getMessage());
         }
     }
 
     private void validateDuplicate(final List<Integer> numbers) {
         Set<Integer> nonDuplicatedNumbers = new HashSet<>(numbers);
         if (nonDuplicatedNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("숫자는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(NON_DUPLICATED_NUMBER.getMessage());
         }
     }
 }
