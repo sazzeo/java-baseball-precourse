@@ -1,45 +1,61 @@
 package baseball.domain;
 
-import baseball.config.BaseballSetting;
-import baseball.utils.CollectionUtils;
+import baseball.config.BaseballState;
 
 import java.util.*;
 
+import static baseball.config.BaseballSetting.DIGITS;
+import static baseball.config.ExceptionMessage.NON_DUPLICATED_NUMBER;
+import static baseball.config.ExceptionMessage.NON_DUPLICATED_SIZE;
+
 public class Balls {
-    public final Set<Ball> balls;
+    private final List<Ball> balls;
 
     public Balls(final List<Integer> numbers) {
-        validateSize(numbers);
-        this.balls = generatedBalls(numbers);
-        validateDuplicate(this.balls);
+        this.validate(numbers);
+        this.balls = this.generateBalls(numbers);
     }
 
-    private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != BaseballSetting.DIGITS) {
-            throw new IllegalArgumentException(BaseballSetting.DIGITS + "개의 숫자를 입력해주세요");
+    private void validate(List<Integer> numbers) {
+        this.validateSize(numbers);
+        this.validateDuplicate(numbers);
+    }
+
+    public BaseballState matchBall(Ball anotherBall) {
+        int index = this.balls.indexOf(anotherBall);
+        if (index < 0) {
+            return BaseballState.NOTING;
         }
-    }
-
-    private void validateDuplicate(final Set<Ball> balls) {
-        if (balls.size() != BaseballSetting.DIGITS) {
-            throw new IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.");
+        if (this.balls.get(index).isPositionSame(anotherBall)) {
+            return BaseballState.STRIKE;
         }
+        return BaseballState.BALL;
     }
 
-    private Set<Ball> generatedBalls(List<Integer> numbers) {
-        Set<Ball> balls = new LinkedHashSet<>();
-        for (Integer number : numbers) {
-            balls.add(Ball.from(number));
+    private List<Ball> generateBalls(final List<Integer> numbers) {
+        List<Ball> balls = new ArrayList<>();
+        final int size = numbers.size();
+        for (int i = 0; i < size; i++) {
+            balls.add(new Ball(numbers.get(i), i));
         }
         return balls;
     }
 
-    public int countBallTo(Balls balls) {
-        return CollectionUtils.retailAllCount(this.balls, balls.balls);
+
+    private void validateSize(final List<Integer> numbers) {
+        if (numbers.size() != DIGITS) {
+            throw new IllegalArgumentException(NON_DUPLICATED_SIZE.getMessage());
+        }
     }
 
-    public Iterator<Ball> createIterator() {
-        return this.balls.iterator();
+    private void validateDuplicate(final List<Integer> numbers) {
+        Set<Integer> nonDuplicatedNumbers = new HashSet<>(numbers);
+        if (nonDuplicatedNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(NON_DUPLICATED_NUMBER.getMessage());
+        }
     }
 
+    public Ball get(int index) {
+        return this.balls.get(index);
+    }
 }
