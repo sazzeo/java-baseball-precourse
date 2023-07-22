@@ -25,12 +25,11 @@ public class Computer {
         this.balls = new Balls(this.numberGenerator.generate(DIGITS));
     }
 
-    public List<BaseballState> matchBalls(List<Ball> anotherBalls) {
+    public List<BaseballState> matchBalls(Balls anotherBalls) {
         List<BaseballState> baseballStates = new ArrayList<>();
-        for (Ball anotherBall : anotherBalls) {
-            baseballStates.add(this.balls.matchBall(anotherBall));
+        for(int i= 0 ; i < DIGITS ;i++) {
+            baseballStates.add(this.balls.matchBall(anotherBalls.get(i)));
         }
         return baseballStates;
     }
-
 }

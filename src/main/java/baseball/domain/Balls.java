@@ -54,4 +54,8 @@ public class Balls {
             throw new IllegalArgumentException(NON_DUPLICATED_NUMBER.getMessage());
         }
     }
+
+    public Ball get(int index) {
+        return this.balls.get(index);
+    }
 }
