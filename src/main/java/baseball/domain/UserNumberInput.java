@@ -1,19 +1,25 @@
 package baseball.domain;
 
+import baseball.utils.InputUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static baseball.config.ExceptionMessage.ENTER_ONLY_NUMBER;
 
-public class UserNumberInput {
+public class UserNumberInput{
 
-    //FIXME: userInput이 불변인데 convert 값을 상태로 가지고 있는게 좋지 않나?
-    //FIXME: 유틸 클래스로 바꾸는게 더 나을 거 같음.
-    private final String userInput;
 
-    public UserNumberInput(final String userInput) {
-        validateNumber(userInput);
-        this.userInput = userInput;
+    public UserNumberInput() {
+    }
+
+    private String input() {
+        return InputUtils.readLine();
+    }
+
+    public List<Integer> getInputNumbers() {
+        String input = input();
+        return convertToNumbers(input);
     }
 
     private void validateNumber(final String userInput) {
@@ -24,16 +30,14 @@ public class UserNumberInput {
         }
     }
 
-    public int convertToNumber() {
-        return Integer.parseInt(this.userInput);
-    }
-
-    public List<Integer> convertToNumbers() {
-        int size = this.userInput.length();
+    private List<Integer> convertToNumbers(final String userInput) {
+        validateNumber(userInput);
+        int size = userInput.length();
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            numbers.add(this.userInput.charAt(i) - '0');
+            numbers.add(userInput.charAt(i) - '0');
         }
         return numbers;
     }
+
 }
