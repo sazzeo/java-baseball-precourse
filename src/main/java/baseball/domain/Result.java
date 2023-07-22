@@ -6,20 +6,19 @@ import java.util.List;
 
 public class Result {
 
-    private int strike;
-    private int ball;
+    private final int strike;
+    private final int ball;
 
     private Result(final int strike, final int ball) {
         this.strike = strike;
         this.ball = ball;
     }
 
-    private static Result of(List<BaseballState> baseballStates) {
-        return null;
+    public int getStrike() {
+        return strike;
     }
 
-    private static void isStrike() {
+    public int getBall() {
+        return ball;
     }
-
-
 }
