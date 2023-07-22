@@ -7,7 +7,7 @@ import java.util.List;
 
 import static baseball.config.ExceptionMessage.ENTER_ONLY_NUMBER;
 
-public class UserNumberInput{
+public class UserNumberInput {
 
 
     public UserNumberInput() {
@@ -15,6 +15,11 @@ public class UserNumberInput{
 
     private String input() {
         return InputUtils.readLine();
+    }
+
+    public int getNumber() {
+        String input = input();
+        return convertToNumber(input);
     }
 
     public List<Integer> getInputNumbers() {
@@ -40,4 +45,11 @@ public class UserNumberInput{
         return numbers;
     }
 
+    private int convertToNumber(final String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ENTER_ONLY_NUMBER.getMessage());
+        }
+    }
 }
