@@ -5,7 +5,7 @@ import baseball.config.BaseballSetting;
 
 import java.util.Objects;
 
-import static baseball.config.ExceptionMessage.NON_DUPLICATED_NUMBER_RANGE;
+import static baseball.config.ExceptionMessage.NON_VALIDATED_NUMBER_RANGE;
 
 public class Number {
 
@@ -18,7 +18,7 @@ public class Number {
 
     private void validateRange(final int number) {
         if (number < BaseballSetting.MIN_NUM || number > BaseballSetting.MAX_NUM) {
-            throw new IllegalArgumentException(NON_DUPLICATED_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(NON_VALIDATED_NUMBER_RANGE.getMessage());
         }
     }
 
