@@ -1,59 +1,59 @@
 package baseball.controller;
 
-import baseball.config.BaseballGameMessage;
 import baseball.config.BaseballState;
 import baseball.config.BaseballStatesCount;
 import baseball.domain.*;
-import baseball.utils.OutputUtils;
+import baseball.utils.BaseballConsoleOutput;
+import baseball.utils.Output;
 
 import java.util.List;
 
-import static baseball.config.BaseballGameMessage.PLEASE_ENTER_A_NUMBER;
-import static baseball.config.BaseballGameMessage.RESET_GAME;
+import static baseball.config.BaseballGameMessage.*;
 import static baseball.config.BaseballSetting.NUMBER_TO_GAME_END;
 import static baseball.config.BaseballSetting.NUMBER_TO_GAME_RESET;
-import static baseball.utils.OutputUtils.printMessage;
-import static baseball.utils.OutputUtils.printlnMessage;
 
 public class GameSimulator {
 
     private final Computer computer;
+
     private final User user;
 
+    private final Output output;
 
     public GameSimulator() {
         this.computer = new Computer();
         this.user = new User(new UserNumberInput());
+        this.output = new BaseballConsoleOutput();
     }
+
 
     public void start() {
-        round();
-    }
-
-    public void round() {
         boolean isEnd = false;
         while (!isEnd) {
-            printMessage(PLEASE_ENTER_A_NUMBER);
+            output.write(PLEASE_ENTER_A_NUMBER.getMessage());
             Balls userBalls = user.generatedBalls();
             List<BaseballState> baseballStates = computer.matchBalls(userBalls);
             BaseballStatesCount baseballStatesCount = new BaseballStatesCount(baseballStates);
             Result result = new Result(baseballStatesCount.getStrikeCount(), baseballStatesCount.getBallCount());
-            printlnMessage(result.getMessage());
+            output.write(result.getMessage());
+            output.newLine();
             isEnd = result.isEnd();
         }
         reset();
     }
 
     public void reset() {
-        printlnMessage(RESET_GAME);
+        output.write(RESET_GAME.getMessage());
+        output.newLine();
         int resetNumber = user.inputResetNumber();
         if (resetNumber == NUMBER_TO_GAME_RESET) {
             computer.resetBalls();
-            round();
+            start();
             return;
         }
         if (resetNumber == NUMBER_TO_GAME_END) {
-            OutputUtils.printlnMessage(BaseballGameMessage.GAME_OVER);
+            output.write(GAME_OVER.getMessage());
+            output.newLine();
         }
     }
 }
